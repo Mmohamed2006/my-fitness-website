@@ -344,8 +344,21 @@
         });
 
         if (res.ok) {
-          // Use the correct path for GitHub Pages
-          window.location.href = "https://mmohamed2006.github.io/thanks.html";
+          // Show success message instead of redirect
+          form.innerHTML = `
+            <div class="text-center">
+              <div class="mb-6">
+                <svg class="mx-auto h-16 w-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-green-500 mb-4">Application Submitted!</h3>
+              <p class="text-neutral-300 mb-6">Thank you for your application. I'll contact you soon to discuss your fitness goals.</p>
+              <a href="index.html" class="inline-block py-3 px-8 rounded-full bg-[var(--fiery-red)] text-white font-bold hover:bg-[var(--fiery-orange)] transition-all duration-300 ease-in-out glow-effect">
+                Back to Home
+              </a>
+            </div>
+          `;
         } else {
           alert("Something went wrong. Please try again.");
         }
