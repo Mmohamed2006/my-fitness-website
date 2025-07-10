@@ -111,8 +111,8 @@
               <p
                 class="text-lg sm:text-xl text-neutral-300 mb-10 max-w-xl mx-auto"
               >
-                If you’re serious about changing your body I’ll help you. Just fill this short form
-                and I’ll personally contact you.
+                If you're serious about changing your body I'll help you. Just fill this short form
+                and I'll personally contact you.
               </p>
               <a
                 class="py-3 px-8 md:py-4 md:px-10 rounded-full h-12 sm:h-14 px-8 sm:px-10 bg-[var(--fiery-red)] text-white text-base sm:text-lg font-bold tracking-wide hover:bg-[var(--fiery-orange)] transition-all duration-300 ease-in-out glow-effect transform hover:scale-105"
@@ -133,64 +133,62 @@
                 Your Details
               </h2>
               <form
-  action="https://sheetdb.io/api/v1/fn5i50whmjeh9" method="POST" onsubmit="window.location.href='https://mmohamed2006.github.io/thanks.html'; return false;"
-  id="coachForm"
-  class="space-y-6"
->
-  <div>
-    <label class="block text-sm font-medium text-neutral-300 mb-1" for="name">
-      Name
-    </label>
-    <input
-      name="name"
-      type="text"
-      required
-      placeholder="Your Full Name"
-      class="form-input w-full rounded-lg bg-neutral-700 border-neutral-600 text-white placeholder-neutral-400 focus:ring-[var(--fiery-red)] focus:border-[var(--fiery-red)] h-12 px-4 text-base shadow-sm"
-    />
-  </div>
+                id="coachForm"
+                class="space-y-6"
+              >
+                <div>
+                  <label class="block text-sm font-medium text-neutral-300 mb-1" for="name">
+                    Name
+                  </label>
+                  <input
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="Your Full Name"
+                    class="form-input w-full rounded-lg bg-neutral-700 border-neutral-600 text-white placeholder-neutral-400 focus:ring-[var(--fiery-red)] focus:border-[var(--fiery-red)] h-12 px-4 text-base shadow-sm"
+                  />
+                </div>
 
-  <div>
-    <label class="block text-sm font-medium text-neutral-300 mb-1" for="contact">
-      Email or WhatsApp
-    </label>
-    <input
-      name="contact"
-      type="text"
-      required
-      placeholder="Your Email or WhatsApp Number"
-      class="form-input w-full rounded-lg bg-neutral-700 border-neutral-600 text-white placeholder-neutral-400 focus:ring-[var(--fiery-red)] focus:border-[var(--fiery-red)] h-12 px-4 text-base shadow-sm"
-    />
-  </div>
+                <div>
+                  <label class="block text-sm font-medium text-neutral-300 mb-1" for="contact">
+                    Email or WhatsApp
+                  </label>
+                  <input
+                    name="contact"
+                    type="text"
+                    required
+                    placeholder="Your Email or WhatsApp Number"
+                    class="form-input w-full rounded-lg bg-neutral-700 border-neutral-600 text-white placeholder-neutral-400 focus:ring-[var(--fiery-red)] focus:border-[var(--fiery-red)] h-12 px-4 text-base shadow-sm"
+                  />
+                </div>
 
-  <div>
-    <label class="block text-sm font-medium text-neutral-300 mb-1" for="goal">
-      Fitness Goal
-    </label>
-    <select
-      name="goal"
-      required
-      class="form-select w-full rounded-lg bg-neutral-700 border-neutral-600 text-white focus:ring-[var(--fiery-red)] focus:border-[var(--fiery-red)] h-12 px-4 text-base shadow-sm"
-    >
-      <option disabled selected value="">Select Your Goal</option>
-      <option value="weight-loss">Weight Loss</option>
-      <option value="muscle-gain">Muscle Gain</option>
-      <option value="strength-training">Strength Training</option>
-      <option value="endurance">Endurance Improvement</option>
-      <option value="overall-fitness">Overall Fitness</option>
-    </select>
-  </div>
+                <div>
+                  <label class="block text-sm font-medium text-neutral-300 mb-1" for="goal">
+                    Fitness Goal
+                  </label>
+                  <select
+                    name="goal"
+                    required
+                    class="form-select w-full rounded-lg bg-neutral-700 border-neutral-600 text-white focus:ring-[var(--fiery-red)] focus:border-[var(--fiery-red)] h-12 px-4 text-base shadow-sm"
+                  >
+                    <option disabled selected value="">Select Your Goal</option>
+                    <option value="weight-loss">Weight Loss</option>
+                    <option value="muscle-gain">Muscle Gain</option>
+                    <option value="strength-training">Strength Training</option>
+                    <option value="endurance">Endurance Improvement</option>
+                    <option value="overall-fitness">Overall Fitness</option>
+                  </select>
+                </div>
 
-  <div>
-    <button
-      type="submit"
-      class="w-full flex items-center justify-center rounded-full h-12 px-6 bg-[var(--fiery-red)] text-white text-base font-bold tracking-wide hover:bg-[var(--fiery-orange)] transition-all duration-300 ease-in-out glow-effect transform hover:scale-105"
-    >
-      Submit Application
-    </button>
-  </div>
-</form>
-
+                <div>
+                  <button
+                    type="submit"
+                    class="w-full flex items-center justify-center rounded-full h-12 px-6 bg-[var(--fiery-red)] text-white text-base font-bold tracking-wide hover:bg-[var(--fiery-orange)] transition-all duration-300 ease-in-out glow-effect transform hover:scale-105"
+                  >
+                    Submit Application
+                  </button>
+                </div>
+              </form>
             </div>
           </section>
           <section
@@ -286,6 +284,7 @@
   <script>
     document.getElementById("currentYear").textContent =
         new Date().getFullYear();
+    
     // Smooth scroll for anchor links
     document.addEventListener("DOMContentLoaded", function () {
       // Smooth scroll for anchor links
@@ -302,6 +301,7 @@
           }
         });
       });
+      
       // Handle page load with hash
       if (window.location.hash) {
         setTimeout(() => {
@@ -315,37 +315,48 @@
       }
     });
 
-
+    // Fixed form submission
     document.getElementById("coachForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
+      e.preventDefault();
 
-    const form = e.target;
-    const data = {
-      data: {
-        name: form.name.value,
-        contact: form.contact.value,
-        goal: form.goal.value
+      const form = e.target;
+      const submitBtn = form.querySelector('button[type="submit"]');
+      
+      // Show loading state
+      submitBtn.textContent = "Submitting...";
+      submitBtn.disabled = true;
+
+      const data = {
+        data: {
+          name: form.name.value,
+          contact: form.contact.value,
+          goal: form.goal.value
+        }
+      };
+
+      try {
+        const res = await fetch("https://sheetdb.io/api/v1/fn5i50whmjeh9", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          // Use the correct path for GitHub Pages
+          window.location.href = "https://mmohamed2006.github.io/thanks.html";
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      } catch (err) {
+        alert("Failed to submit form. Please check your internet connection.");
+        console.error(err);
+      } finally {
+        // Reset button state
+        submitBtn.textContent = "Submit Application";
+        submitBtn.disabled = false;
       }
-    };
-
-    try {
-      const res = await fetch("https://sheetdb.io/api/v1/fn5i50whmjeh9", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      if (res.ok) {
-        window.location.href = "https://mmohamed2006.github.io/thanks.html";
-      } else {
-        alert("Something went wrong.");
-      }
-    } catch (err) {
-      alert("Failed to submit form.");
-      console.error(err);
-    }
-  });
+    });
   </script>
 </html>
