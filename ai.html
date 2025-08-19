@@ -359,6 +359,18 @@
                 width: 100%;
             }
         }
+
+        .mobile-close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 70;
+    }
     </style>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 </head>
@@ -415,6 +427,7 @@
         </header>
         <!-- Mobile Nav -->
         <nav id="mobileNav" class="fixed top-0 left-0 w-full bg-[var(--dark-bg)] bg-opacity-95 z-50 flex flex-col items-center gap-6 py-10 shadow-2xl transition-transform duration-300 transform -translate-y-full md:hidden" style="backdrop-filter: blur(8px);">
+        <button id="mobileCloseBtn" class="mobile-close-btn">&times;</button>
           <a class="text-lg font-medium hover:text-[var(--fiery-red)] transition-colors" href="index.html">Home</a>
           <a class="text-lg font-medium hover:text-[var(--fiery-red)] transition-colors" href="index.html#About">About</a>
           <a class="text-lg font-medium hover:text-[var(--fiery-red)] transition-colors" href="index.html#Services">Services</a>
@@ -600,12 +613,12 @@
                 </div>
 
                 <div class="action-buttons">
-                    <button class="action-btn primary" onclick="bookConsultation()">
+                    <a class="action-btn primary" href="https://wa.me/+201505366276" target="_blank" rel="noopener">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                         </svg>
                         Get customized plan
-                    </button>
+                    </a>
                     <button class="action-btn" onclick="printResults()">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <polyline points="6 9 6 2 18 2 18 9"></polyline>
@@ -614,28 +627,30 @@
                         </svg>
                         Print Plan
                     </button>
-                    <button class="action-btn" onclick="resetCalculator()">
+                    <a class="action-btn" href="home.html">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M2.5 2v6h6M2.66 15.57a10 10 0 1 0 1.17-7.43"></path>
                         </svg>
-                        Start Over
-                    </button>
+                        Fitness app
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+
       // Mobile nav toggle
       const mobileMenuBtn = document.getElementById('mobileMenuBtn');
       const mobileNav = document.getElementById('mobileNav');
       if (mobileMenuBtn && mobileNav) {
         mobileMenuBtn.addEventListener('click', function() {
-          if (mobileNav.style.transform === '' || mobileNav.style.transform.includes('-translate-y-full')) {
-            mobileNav.style.transform = 'translateY(0)';
-          } else {
-            mobileNav.style.transform = 'translateY(-100%)';
-          }
+          if (mobileNav.style.transform === '' || mobileNav.style.transform.includes('-100%')) {
+  mobileNav.style.transform = 'translateY(0)';
+} else {
+  mobileNav.style.transform = 'translateY(-100%)';
+}
+
         });
         // Hide menu when a link is clicked
         mobileNav.querySelectorAll('a').forEach(link => {
@@ -644,6 +659,12 @@
           });
         });
       }
+
+      const closebtn = document.querySelector("#mobileCloseBtn");
+
+        closebtn.addEventListener("click",function() {
+            mobileNav.style.transform = 'translateY(-100%)';
+        });
         // Activity levels with multipliers
         const activityLevels = {
             sedentary: { multiplier: 1.2, description: "Little or no exercise" },
@@ -828,10 +849,14 @@
         }
 
         // Display results
+        let calories = 0;
+        let cupsWater = 0;
         function displayResults(results) {
             document.getElementById('bmrValue').textContent = results.bmr;
             document.getElementById('tdeeValue').textContent = results.tdee;
             document.getElementById('targetValue').textContent = results.targetCalories;
+            calories = results.targetCalories;
+            saveResultsToLocalStorage();
             
             document.getElementById('proteinValue').textContent = results.macros.protein + 'g';
             document.getElementById('carbsValue').textContent = results.macros.carbs + 'g';
@@ -870,6 +895,12 @@
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         }
 
+        //local storage for saving results
+        function saveResultsToLocalStorage() {
+            localStorage.setItem('Calories', JSON.stringify(calories));
+            localStorage.setItem('CupsWater', JSON.stringify(cupsWater));
+        }
+
         // Main calculation function
         function calculateResults() {
             const age = parseInt(document.getElementById('age').value);
@@ -906,6 +937,9 @@
                 showError('Please enter a valid body fat percentage between 5 and 50');
                 return;
             }
+
+            cupsWater = Math.round(weight * 0.033);
+            if (cupsWater < 8) cupsWater = 8; // Minimum 8 cups
 
             setLoading(true);
 
